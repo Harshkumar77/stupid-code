@@ -12,7 +12,7 @@
              ]
             const baseURL = 'https://braflix.gd/tv/72517/';
             const randomSeason = Math.floor(Math.random() * eps.length) + 1 
-            const episode = Math.floor(Math.random() * eps[randomSeason].length) + 1
+            const episode = Math.floor(Math.random() * eps[randomSeason]) + 1
             const redirectURL = baseURL + randomSeason + '/' + episode + '?play=true';
 
             window.location.href = redirectURL;
