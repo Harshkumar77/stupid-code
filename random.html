@@ -21,7 +21,7 @@
                     .map(item => `/${item.path.replace('.html', '')}`);
 
                 if (htmlFiles.length === 0) {
-                    console.warn('No valid HTML files found!');
+                    alert('No valid HTML files found!');
                     return;
                 }
 
@@ -29,7 +29,7 @@
                 const randomNum = Math.floor(Math.random() * htmlFiles.length);
                 window.location.href = htmlFiles[randomNum];
             } catch (error) {
-                console.error('Error fetching files:', error);
+                alert('Error fetching files:', error);
             }
         }
 
