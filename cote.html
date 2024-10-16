@@ -4,19 +4,48 @@
     <meta charset="UTF-8">
     <title>Redirecting...</title>
     <script>
-        window.onload = function() {
-            const eps = [ 
-                12,
-                13,
-                13,
-             ]
-            const baseURL = 'https://braflix.gd/tv/72517/';
-            const randomSeason = Math.floor(Math.random() * eps.length) + 1 
-            const episode = Math.floor(Math.random() * eps[randomSeason - 1]) + 1
-            const redirectURL = baseURL + randomSeason + '/' + episode + '?play=true';
+       // Common part of the URL
+const baseUrl = "https://anitaku.pe/";
 
-            window.location.href = redirectURL;
-        }
+// Static URLs with episode ranges
+const urls = [
+    {
+        path: "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-dub-episode-",
+        range: [1, 12]
+    },
+    {
+        path: "category/youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-2nd-season-dub-episode-",
+        range: [1, 13]
+    },
+    {
+        path: "category/youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-2nd-season-dub-episode-",
+        range: [1, 13]
+    }
+];
+
+// Function to generate a random episode number within a given range
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Function to construct and return a random episode URL
+function getRandomEpisodeUrl() {
+    // Pick a random URL object from the list
+    const selected = urls[Math.floor(Math.random() * urls.length)];
+
+    // Generate a random episode number within the specified range
+    const episodeNumber = getRandomNumber(selected.range[0], selected.range[1]);
+
+    // Return the complete URL
+    return `${baseUrl}${selected.path}${episodeNumber}`;
+}
+
+// Redirect to a random episode on page load
+window.onload = function () {
+    const randomUrl = getRandomEpisodeUrl();
+    window.location.href = randomUrl;
+};
+
     </script>
 </head>
 <body>
