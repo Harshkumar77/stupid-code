@@ -2,18 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="Death note">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
-        window.onload = function() {
-            const all = [
-                "/rick-and-morty",
-                "/death-note",
-                "/cote"
-            ]
-            const randomNum1 = Math.floor(Math.random() * all.length);
-            window.location.href = all[randomNum1];
+        async function redirectRandomHtml() {
+            try {
+                const apiUrl = 'https://api.github.com/repos/harshkumar77/stupid-code/git/trees/main?recursive=1';
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+                
+                const data = await response.json();
+
+                // Extract valid HTML files excluding 'index.html' and 'random.html'
+                const htmlFiles = data.tree
+                    .filter(item => item.path.endsWith('.html') 
+                                    && item.path !== 'index.html' 
+                                    && item.path !== 'random.html')
+                    .map(item => `/${item.path.replace('.html', '')}`);
+
+                if (htmlFiles.length === 0) {
+                    console.warn('No valid HTML files found!');
+                    return;
+                }
+
+                // Pick a random HTML file
+                const randomNum = Math.floor(Math.random() * htmlFiles.length);
+                window.location.href = htmlFiles[randomNum];
+            } catch (error) {
+                console.error('Error fetching files:', error);
+            }
         }
+
+        window.onload = redirectRandomHtml;
     </script>
 </head>
 <body>
