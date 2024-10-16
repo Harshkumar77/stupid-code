@@ -5,12 +5,32 @@
     <meta http-equiv="refresh" content="Death note">
     <title>Redirecting...</title>
     <script>
-        window.onload = function() {
-            const baseURL = 'https://braflix.gd/tv/13916/';
-            const randomNum1 = Math.floor(Math.random() * 37) + 1;
-            const redirectURL = baseURL + '/1/' + randomNum1 + '?play=true';
-            window.location.href = redirectURL;
-        }
+        // Common base URL for the episodes
+const baseUrl = "https://anitaku.pe/";
+
+// URL path and episode range
+const urlInfo = {
+    path: "death-note-dub-episode-",
+    range: [1, 37]
+};
+
+// Function to generate a random episode number within the given range
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Function to construct and return a random episode URL
+function getRandomEpisodeUrl() {
+    const episodeNumber = getRandomNumber(urlInfo.range[0], urlInfo.range[1]);
+    return `${baseUrl}${urlInfo.path}${episodeNumber}`;
+}
+
+// Redirect to a random episode on page load
+window.onload = function () {
+    const randomUrl = getRandomEpisodeUrl();
+    window.location.href = randomUrl;
+};
+
     </script>
 </head>
 <body>
