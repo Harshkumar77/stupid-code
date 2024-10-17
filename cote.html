@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Redirecting...</title>
     <script>
+        Math.random = () => crypto.getRandomValues(new Uint32Array(1))[0] / (2**32);
+
        // Common part of the URL
 const baseUrl = "https://anitaku.pe/";
 
