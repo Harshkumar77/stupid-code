@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
+    <script src="utils.js"></script>
     <script>
-        Math.random = () => crypto.getRandomValues(new Uint32Array(1))[0] / (2**32);
-
         async function redirectRandomHtml() {
             try {
                 const apiUrl = 'https://api.github.com/repos/harshkumar77/stupid-code/git/trees/main?recursive=1';
@@ -15,11 +14,18 @@
                 
                 const data = await response.json();
 
-                // Extract valid HTML files excluding 'index.html' and 'random.html'
+                const excludedFiles = [
+                    'index.html', 
+                    'random.html', 
+                    'example.html', 
+                    'test.html', 
+                    'r.html', 
+
+                ];
+
                 const htmlFiles = data.tree
                     .filter(item => item.path.endsWith('.html') 
-                                    && item.path !== 'index.html' 
-                                    && item.path !== 'random.html')
+                                    && !excludedFiles.includes(item.path))
                     .map(item => `/${item.path.replace('.html', '')}`);
 
                 if (htmlFiles.length === 0) {
