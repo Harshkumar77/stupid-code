@@ -21,7 +21,9 @@
             const randomNum4 = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER) + 1; // 1 to Infinity
 
             // Display results
-            document.getElementById('words').innerText = `Random Words: ${randomWords.join(', ')}`;
+            document.getElementById('words').innerText = `Random Words: ${randomWords.join(' ')}`;
+            document.getElementById('words-comma').innerText = `Random Words: ${randomWords.join(', ')}`;
+            document.getElementById('words-or').innerText = `Random Words: ${randomWords.join(' OR ')}`;
             document.getElementById('numbers').innerHTML = `
                 Random Numbers:<br>
                 1 to 10: ${randomNum1}<br>
@@ -37,6 +39,8 @@
 <body>
     <h1>Random Words and Numbers</h1>
     <p id="words">Loading words...</p>
+    <p id="words-or">Loading words...</p>
+    <p id="words-comma">Loading words...</p>
     <p id="numbers">Loading numbers...</p>
 </body>
 </html>
