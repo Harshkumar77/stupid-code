@@ -23,9 +23,9 @@
             const randomNum4 = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER) + 1; // 1 to Infinity
 
             // Display results
-            document.getElementById('words').innerText = `Random Words: ${randomWords.join(' ')}`;
-            document.getElementById('words-comma').innerText = `Random Words: ${randomWords.join(', ')}`;
-            document.getElementById('words-or').innerText = `Random Words: ${randomWords.join(' OR ')}`;
+            document.getElementById('words').innerText = `${randomWords.join(' ')}`;
+            document.getElementById('words-comma').innerText = `${randomWords.join(', ')}`;
+            document.getElementById('words-or').innerText = `${randomWords.join(' OR ')}`;
 
             document.getElementById('n-0-10').innerText = `${randomNum1}`
             document.getElementById('n-0-100').innerText = `${randomNum2}`
