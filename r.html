@@ -30,6 +30,7 @@
             document.getElementById('words-query-yt').innerText = `https://www.youtube.com/results?search_query=${randomWords.join('+OR+')}&sp=EgIYAw%253D%253D`;
             document.getElementById('words-query-iai').innerText = `https://www.youtube.com/@TheInstituteOfArtAndIdeas/search?query=${randomWords.join('+OR+')}`;
             document.getElementById('words-query-ted').innerText = `https://www.youtube.com/@TED/search?query=${randomWords.join('+OR+')}`;
+            document.getElementById('words-query-google').innerText = `https://www.google.com/search?q=${randomWords.join('+OR+')}`;
 
             document.getElementById('n-0-10').innerText = `${randomNum1}`
             document.getElementById('n-0-100').innerText = `${randomNum2}`
@@ -43,6 +44,7 @@
 <body>
     <main>
         <div>
+            <button onclick="location.reload()">Refresh</button>
             <h1>Random Words</h1> 
             
             <p id="words">Loading words...</p>
