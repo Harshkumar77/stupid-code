@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Words and Numbers</title>
-    <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
+    <!-- <link href="https://unpkg.com/sanitize.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" >
     <script src="utils.js"></script>
     <script>
         async function fetchRandomData() {
@@ -37,33 +38,34 @@
     </script>
 </head>
 <body>
-    <div>
-        <h1>Random Words</h1> 
-        
-        <p id="words">Loading words...</p>
-        <button onclick="copyToClipboard('words')">RAW</button>
-
-        <p id="words-comma" hidden>Loading words...</p>
-        <button onclick="copyToClipboard('words-comma')">CSV</button>
-
-        <p id="words-or" hidden>Loading words...</p>
-        <button onclick="copyToClipboard('words-or')">OR SEP</button>
-    </div>
-
-    <div>
-        <h1>Random Numbers</h1> 
-        <p id="n-0-10">Loading numbers...</p>
-        <button onclick="copyToClipboard('n-0-10')">Copy</button>
-        
-        <p id="n-0-100">Loading numbers...</p>
-        <button onclick="copyToClipboard('n-0-100')">Copy</button>
-
-        <p id="n-0-1000">Loading numbers...</p>
-        <button onclick="copyToClipboard('n-0-1000')">Copy</button>
-        
-        <p id="n-0-inf">Loading numbers...</p>
-        <button onclick="copyToClipboard('n-0-inf')">Copy</button>
-    </div>
-
+    <main>
+        <div>
+            <h1>Random Words</h1> 
+            
+            <p id="words">Loading words...</p>
+            <button onclick="copyToClipboard('words')">RAW</button>
+    
+            <p id="words-comma" hidden>Loading words...</p>
+            <button onclick="copyToClipboard('words-comma')">CSV</button>
+    
+            <p id="words-or" hidden>Loading words...</p>
+            <button onclick="copyToClipboard('words-or')">OR SEP</button>
+        </div>
+    
+        <div>
+            <h1>Random Numbers</h1> 
+            <p id="n-0-10">Loading numbers...</p>
+            <button onclick="copyToClipboard('n-0-10')">Copy</button>
+            
+            <p id="n-0-100">Loading numbers...</p>
+            <button onclick="copyToClipboard('n-0-100')">Copy</button>
+    
+            <p id="n-0-1000">Loading numbers...</p>
+            <button onclick="copyToClipboard('n-0-1000')">Copy</button>
+            
+            <p id="n-0-inf">Loading numbers...</p>
+            <button onclick="copyToClipboard('n-0-inf')">Copy</button>
+        </div>
+    </main>
 </body>
 </html>
