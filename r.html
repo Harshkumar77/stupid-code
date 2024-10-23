@@ -24,23 +24,44 @@
             document.getElementById('words').innerText = `Random Words: ${randomWords.join(' ')}`;
             document.getElementById('words-comma').innerText = `Random Words: ${randomWords.join(', ')}`;
             document.getElementById('words-or').innerText = `Random Words: ${randomWords.join(' OR ')}`;
-            document.getElementById('numbers').innerHTML = `
-                Random Numbers:<br>
-                1 to 10: ${randomNum1}<br>
-                1 to 100: ${randomNum2}<br>
-                1 to 1000: ${randomNum3}<br>
-                1 to Infinity: ${randomNum4}
-            `;
+            
+            document.getElementById('n-0-10').innerText = `${randomNum1}`
+            document.getElementById('n-0-100').innerText = `${randomNum2}`
+            document.getElementById('n-0-1000').innerText = `${randomNum3}`
+            document.getElementById('n-0-inf').innerText = `${randomNum4}`
         }
 
         window.onload = fetchRandomData;
     </script>
 </head>
 <body>
-    <h1>Random Words and Numbers</h1>
-    <p id="words">Loading words...</p>
-    <p id="words-or">Loading words...</p>
-    <p id="words-comma">Loading words...</p>
-    <p id="numbers">Loading numbers...</p>
+    <div>
+        <h1>Random Words</h1> 
+        
+        <p id="words">Loading words...</p>
+        <button onclick="copyToClipboard('words')">Copy</button>
+
+        <p id="words-comma">Loading words...</p>
+        <button onclick="copyToClipboard('words-comma')">Copy</button>
+
+        <p id="words-or">Loading words...</p>
+        <button onclick="copyToClipboard('words-or')">Copy</button>
+    </div>
+
+    <div>
+        <h1>Random Numbers</h1> 
+        <p id="n-0-10">Loading numbers...</p>
+        <button onclick="copyToClipboard('n-0-10')">Copy</button>
+        
+        <p id="n-0-100">Loading numbers...</p>
+        <button onclick="copyToClipboard('n-0-100')">Copy</button>
+
+        <p id="n-0-1000">Loading numbers...</p>
+        <button onclick="copyToClipboard('n-0-1000')">Copy</button>
+        
+        <p id="n-0-inf">Loading numbers...</p>
+        <button onclick="copyToClipboard('n-0-inf')">Copy</button>
+    </div>
+
 </body>
 </html>
