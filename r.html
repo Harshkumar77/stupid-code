@@ -27,6 +27,7 @@
             document.getElementById('words').innerText = `${randomWords.join(' ')}`;
             document.getElementById('words-comma').innerText = `${randomWords.join(', ')}`;
             document.getElementById('words-or').innerText = `${randomWords.join(' OR ')}`;
+            document.getElementById('words-query-yt').innerText = `https://www.youtube.com/results?search_query=${randomWords.join('+OR+')}&sp=EgIYAw%253D%253D`;
 
             document.getElementById('n-0-10').innerText = `${randomNum1}`
             document.getElementById('n-0-100').innerText = `${randomNum2}`
@@ -50,6 +51,9 @@
     
             <p id="words-or" hidden>Loading words...</p>
             <button onclick="copyToClipboard('words-or')">OR SEP</button>
+            
+            <p id="words-query-yt" hidden>Loading words...</p>
+            <button onclick="openInNewTab('words-query-yt')">YT</button>
         </div>
     
         <div>
@@ -59,7 +63,7 @@
             <button id="n-0-100" onclick="copyToClipboard('n-0-100')">Loading numbers...</button>
             <button id="n-0-1000" onclick="copyToClipboard('n-0-1000')">Loading numbers...</button>
             <button id="n-0-inf" onclick="copyToClipboard('n-0-inf')">Loading numbers...</button>
-            
+
         </div>
     </main>
 </body>

@@ -6,3 +6,8 @@ function copyToClipboard(elementId) {
         // alert(`Copied: ${text}`);
     }).catch(err => console.error('Failed to copy text: ', err));
 };
+
+function openInNewTab(elementId) {
+    const url = document.getElementById(elementId).innerText;
+    window.open(url, '_blank').focus();
+}
