@@ -8,6 +8,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" >
     <script src="utils.js"></script>
     <script>
+       document.querySelectorAll('[class*="counter"]').forEach((_) => {
+  _.className;
+  document
+    .querySelectorAll(`.${_.className} > div > button`)
+    .forEach((b, i) => {
+      b.addEventListener("click", () => {
+        const change = i * -2 + 1;
+        const counterText = document.querySelector(`.${_.className} > p`)
+        if(counterText.innerText.startsWith('L'))
+          counterText.innerText = 0;
+        counterText.innerText = `${Number(counterText.innerText) + change}`;
+      });
+    });
+});
+
         async function fetchRandomData() {
             // Fetch the word list
             const response = await fetch('https://raw.githubusercontent.com/openethereum/wordlist/refs/heads/master/res/wordlist.json');
@@ -27,7 +42,6 @@
             document.getElementById('words').innerText = `${randomWords.join(' ')}`;
             document.getElementById('words-comma').innerText = `${randomWords.join(', ')}`;
             document.getElementById('words-or').innerText = `${randomWords.join(' OR ')}`;
-            document.getElementById('words-query-yt').innerText = `https://www.youtube.com/results?search_query=${randomWords.join('+OR+')}&sp=EgIYAw%253D%253D`;
             document.getElementById('words-query-iai').innerText = `https://www.youtube.com/@TheInstituteOfArtAndIdeas/search?query=${randomWords.join('+OR+')}`;
             document.getElementById('words-query-ted').innerText = `https://www.youtube.com/@TED/search?query=${randomWords.join('+OR+')}`;
             document.getElementById('words-query-google').innerText = `https://www.google.com/search?q=${randomWords.join('+OR+')}`;
@@ -43,6 +57,15 @@
 </head>
 <body>
     <main>
+        <div>
+            <div class="counter-a">
+                <p>Loading...</p>
+                <div>
+                    <button>++</button>
+                    <button>--</button>
+                </div>
+            </div>
+        </div>
         <div>
             <button onclick="location.reload()">Refresh</button>
             <h1>Random Words</h1> 
