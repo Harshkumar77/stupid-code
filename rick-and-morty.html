@@ -1,20 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url='https://braflix.gd/tv/60625/' + Math.floor(Math.random() * 7 + 1) + '/' + Math.floor(Math.random() * 10 + 1) + '?play=true'">
+    <meta http-equiv="refresh"
+        content="0; url='https://braflix.gd/tv/60625/' + Math.floor(Math.random() * 7 + 1) + '/' + Math.floor(Math.random() * 10 + 1) + '?play=true'">
     <title>Redirecting...</title>
     <script>
-        window.onload = function() {
-            const baseURL = 'https://braflix.gd/tv/60625/';
-            const randomNum1 = Math.floor(Math.random() * 7) + 1;
-            const randomNum2 = Math.floor(Math.random() * 10) + 1;
-            const redirectURL = baseURL + randomNum1 + '/' + randomNum2 + '?play=true';
-            window.location.href = redirectURL;
-        }
+        window.onload = function () {
+            const baseURL = "https://braflix.gd/tv/60625/";
+            const urlStack = new URLStack()
+            
+            if (urlStack.empty()) {
+                const SEASONS = 7
+                const EPISODES = 10
+                const epis = Array(SEASONS)
+                    .fill(0)
+                    .map((_, i) => i + 1)
+                    .map((s) =>
+                        Array(EPISODES)
+                            .fill(0)
+                            .map((_, i) => `${s}/${i + 1}`)
+                    )
+                    .flat();
+
+                epis.push("1/11")
+
+                epis
+                    .sort(() => 0.5 - Math.random())
+                    .forEach(_ => urlStack.softPush(_))
+
+                urlStack.save()
+            }
+
+            const redirectURL = baseURL + urlStack.pop() + "?play=true";
+            console.clear();
+            console.log(redirectURL);
+        };
+
+
     </script>
+    window.location.href = redirectURL;
+
 </head>
+
 <body>
     <p>Redirecting...</p>
 </body>
+
 </html>

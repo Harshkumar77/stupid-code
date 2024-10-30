@@ -11,3 +11,46 @@ function openInNewTab(elementId) {
     const url = document.getElementById(elementId).innerText;
     window.open(url, '_blank').focus();
 }
+
+class URLStack {
+    constructor() {
+        this.urlKey = window.location.href;
+        this.stack = JSON.parse(localStorage.getItem(this.urlKey)) || [];
+    }
+
+    // Push an item to the stack but dont update localstore
+    softPush(item) {
+        this.stack.push(item);
+    }
+
+    // Push an item to the stack
+    push(item) {
+        this.stack.push(item);
+        this.save();
+    }
+
+    // Pop an item from the stack
+    pop() {
+        if (this.stack.length === 0) {
+            console.warn('Stack is empty!');
+            return null;
+        }
+        const popped = this.stack.pop();
+        this.save();
+        return popped;
+    }
+
+    empty() {
+        return this.stack.length === 0
+    }
+
+    // View the current stack
+    display() {
+        console.log('Current Stack:', this.stack);
+    }
+
+    // Save the stack to localStorage
+    save() {
+        localStorage.setItem(this.urlKey, JSON.stringify(this.stack));
+    }
+}
