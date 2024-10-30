@@ -10,7 +10,7 @@
         window.onload = function () {
             const baseURL = "https://braflix.gd/tv/60625/";
             const urlStack = new URLStack()
-            
+
             if (urlStack.empty()) {
                 const SEASONS = 7
                 const EPISODES = 10
@@ -38,9 +38,8 @@
             console.log(redirectURL);
         };
 
-
+        window.location.href = redirectURL;
     </script>
-    window.location.href = redirectURL;
 
 </head>
 
