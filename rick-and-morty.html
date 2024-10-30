@@ -38,13 +38,14 @@
             console.log(redirectURL);
         };
 
-        window.location.href = redirectURL;
+        document.getElementById("msg").innerText = redirectURL;
+        // window.location.href = redirectURL;
     </script>
 
 </head>
 
 <body>
-    <p>Redirecting...</p>
+    <p id="msg">Redirecting...</p>
 </body>
 
 </html>
