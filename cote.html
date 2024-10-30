@@ -1,55 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh">
     <title>Redirecting...</title>
     <script src="utils.js"></script>
     <script>
-       // Common part of the URL
-const baseUrl = "https://anitaku.pe/";
+        const baseUrl = "https://anitaku.pe/";
 
-// Static URLs with episode ranges
-const urls = [
-    {
-        path: "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-dub-episode-",
-        range: [1, 12]
-    },
-    {
-        path: "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-2nd-season-dub-episode-",
-        range: [1, 13]
-    },
-    {
-        path: "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-3rd-season-dub-episode-",
-        range: [1, 13]
-    }
-];
+        const urls = [
+            "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-dub-episode-",
+            "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-2nd-season-dub-episode-",
+            "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-3rd-season-dub-episode-",
+        ];
 
-// Function to generate a random episode number within a given range
-function getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
-// Function to construct and return a random episode URL
-function getRandomEpisodeUrl() {
-    // Pick a random URL object from the list
-    const selected = urls[Math.floor(Math.random() * urls.length)];
+        window.onload = function () {
+            const urlStack = new URLStack()
 
-    // Generate a random episode number within the specified range
-    const episodeNumber = getRandomNumber(selected.range[0], selected.range[1]);
+            if (urlStack.empty()) {
+                const SEASONS = 3
+                const EPISODES = 12
 
-    // Return the complete URL
-    return `${baseUrl}${selected.path}${episodeNumber}`;
-}
+                const epis = populatedEpisodes(SEASONS, EPISODES)
+                epis.push([2, 13])
+                epis.push([3, 13])
+                epis
+                    .shuffle()
+                    .forEach(_ => urlStack.softPush(baseURL + urls[_[0] - 1] + _[1]))
+                urlStack.save()
+            }
 
-// Redirect to a random episode on page load
-window.onload = function () {
-    const randomUrl = getRandomEpisodeUrl();
-    window.location.href = randomUrl;
-};
+            const redirectURL = urlStack.pop()
+            console.log(redirectURL);
+            document.getElementById("msg").innerText = redirectURL;
+            window.location.href = redirectURL;
+        };
 
     </script>
 </head>
+
 <body>
-    <p>Redirecting...</p>
+    <p id="msg">Redirecting...</p>
 </body>
+
 </html>

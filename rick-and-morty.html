@@ -14,17 +14,16 @@
             if (urlStack.empty()) {
                 const SEASONS = 7
                 const EPISODES = 10
-                
+
                 const epis = populatedEpisodes(SEASONS, EPISODES)
-                epis.push("1/11")
+                epis.push(["1","11"])
                 epis
                     .shuffle()
-                    .forEach(_ => urlStack.softPush(_))
+                    .forEach(_ => urlStack.softPush(baseURL + _[0] + "/" + _[1] + "?play=true"))
                 urlStack.save()
             }
 
-            const redirectURL = baseURL + urlStack.pop() + "?play=true";
-            console.clear();
+            const redirectURL = urlStack.pop()
             console.log(redirectURL);
             document.getElementById("msg").innerText = redirectURL;
             window.location.href = redirectURL;
