@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url='https://braflix.gd/tv/60625/' + Math.floor(Math.random() * 7 + 1) + '/' + Math.floor(Math.random() * 10 + 1) + '?play=true'">
+    <meta http-equiv="refresh">
     <title>Redirecting...</title>
     <script src="utils.js"></script>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             const baseURL = 'https://braflix.gd/tv/1215/';
-            const randomNum1 = Math.floor(Math.random() * 7) + 1;
-            const randomNum2 = Math.floor(Math.random() * 12) + 1;
-            const redirectURL = baseURL + randomNum1 + '/' + randomNum2 + '?play=true';
+            const urlStack = new URLStack()
+
+            if (urlStack.empty()) {
+                const SEASONS = 7
+                const EPISODES = 12
+
+                const epis = populatedEpisodes(SEASONS, EPISODES)
+                epis
+                    .shuffle()
+                    .forEach(_ => urlStack.softPush(baseURL + _[0] + "/" + _[1] + "?play=true"))
+                urlStack.save()
+            }
+
+            const redirectURL = urlStack.pop()
+            console.log(redirectURL);
+            document.getElementById("msg").innerText = redirectURL;
             window.location.href = redirectURL;
-        }
+        };
     </script>
+
 </head>
+
 <body>
-    <p>Redirecting...</p>
+    <p id="msg">Redirecting...</p>
 </body>
+
 </html>

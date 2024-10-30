@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="refresh" content="Death note">
@@ -7,34 +8,33 @@
     <script src="utils.js"></script>
     <script>
         // Common base URL for the episodes
-const baseUrl = "https://anitaku.pe/";
+        const baseUrl = "https://anitaku.pe/" + "death-note-dub-episode-";
 
-// URL path and episode range
-const urlInfo = {
-    path: "death-note-dub-episode-",
-    range: [1, 37]
-};
+        window.onload = function () {
+            const urlStack = new URLStack()
 
-// Function to generate a random episode number within the given range
-function getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+            if (urlStack.empty()) {
+                const SEASONS = 1
+                const EPISODES = 36
 
-// Function to construct and return a random episode URL
-function getRandomEpisodeUrl() {
-    const episodeNumber = getRandomNumber(urlInfo.range[0], urlInfo.range[1]);
-    return `${baseUrl}${urlInfo.path}${episodeNumber}`;
-}
+                const epis = populatedEpisodes(SEASONS, EPISODES)
+                epis
+                    .shuffle()
+                    .forEach(_ => urlStack.softPush(baseURL + _[1]))
+                urlStack.save()
+            }
 
-// Redirect to a random episode on page load
-window.onload = function () {
-    const randomUrl = getRandomEpisodeUrl();
-    window.location.href = randomUrl;
-};
+            const redirectURL = urlStack.pop()
+            console.log(redirectURL);
+            document.getElementById("msg").innerText = redirectURL;
+            window.location.href = redirectURL;
+        };
 
     </script>
 </head>
+
 <body>
-    <p>Redirecting...</p>
+    <p id="msg">Redirecting...</p>
 </body>
+
 </html>
