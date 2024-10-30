@@ -36,10 +36,9 @@
             const redirectURL = baseURL + urlStack.pop() + "?play=true";
             console.clear();
             console.log(redirectURL);
+            document.getElementById("msg").innerText = redirectURL;
+            window.location.href = redirectURL;
         };
-
-        document.getElementById("msg").innerText = redirectURL;
-        // window.location.href = redirectURL;
     </script>
 
 </head>
