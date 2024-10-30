@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh">
+    <title>Redirecting...</title>
+    <script src="utils.js"></script>
+    <script>
+        const baseURL = "https://anitaku.pe/";
+
+        const urls = [
+        "kage-no-jitsuryokusha-ni-naritakute-dub-episode-",
+        "kage-no-jitsuryokusha-ni-naritakute-2nd-season-dub-episode-",
+         ];
+
+
+        window.onload = function () {
+            const urlStack = new URLStack()
+
+            if (urlStack.empty()) {
+                const SEASONS = 2
+                const EPISODES = 12
+
+                const epis = populatedEpisodes(SEASONS, EPISODES)
+                epis.push([1, 13])
+                epis.push([1, 14])
+                epis.push([1, 15])
+                epis.push([1, 17])
+                epis.push([1, 18])
+                epis.push([1, 19])
+                epis.push([1, 20])
+
+                epis
+                    .shuffle()
+                    .forEach(_ => urlStack.softPush(baseURL + urls[_[0] - 1] + _[1]))
+                urlStack.save()
+            }
+
+            const redirectURL = urlStack.pop()
+            console.log(redirectURL);
+            document.getElementById("msg").innerText = redirectURL;
+            window.location.href = redirectURL;
+        };
+
+    </script>
+</head>
+
+<body>
+    <p id="msg">Redirecting...</p>
+</body>
+
+</html>
