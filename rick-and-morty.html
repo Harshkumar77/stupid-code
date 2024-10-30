@@ -14,22 +14,12 @@
             if (urlStack.empty()) {
                 const SEASONS = 7
                 const EPISODES = 10
-                const epis = Array(SEASONS)
-                    .fill(0)
-                    .map((_, i) => i + 1)
-                    .map((s) =>
-                        Array(EPISODES)
-                            .fill(0)
-                            .map((_, i) => `${s}/${i + 1}`)
-                    )
-                    .flat();
-
+                
+                const epis = populatedEpisodes(SEASONS, EPISODES)
                 epis.push("1/11")
-
                 epis
-                    .sort(() => 0.5 - Math.random())
+                    .shuffle()
                     .forEach(_ => urlStack.softPush(_))
-
                 urlStack.save()
             }
 

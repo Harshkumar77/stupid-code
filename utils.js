@@ -54,3 +54,21 @@ class URLStack {
         localStorage.setItem(this.urlKey, JSON.stringify(this.stack));
     }
 }
+
+// 1/2 1/3 1/4
+function populatedEpisodes(SEASONS, EPISODES) {
+    return Array(SEASONS)
+    .fill(0)
+    .map((_, i) => i + 1)
+    .map((s) =>
+        Array(EPISODES)
+            .fill(0)
+            .map((_, i) => `${s}/${i + 1}`)
+    )
+    .flat();
+}
+
+
+Array.prototype.shuffle = function() {
+    return this.sort(() => 0.5 - Math.random())
+}
