@@ -58,7 +58,7 @@ class URLStack {
   }
 }
 
-// 1,2 1,3 1/4
+// [[1,2], [1,3] ......] 
 function populatedEpisodes(SEASONS, EPISODES) {
   return Array(SEASONS)
     .fill(0)
