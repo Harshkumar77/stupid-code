@@ -8,7 +8,8 @@
     <script src="utils.js"></script>
     <script>
         window.onload = function () {
-            const baseURL = 'https://braflix.gd/tv/1215/';
+            const baseURL = 'https://corsflix.us.kg/tv-shows/1215';
+            
             const urlStack = new URLStack()
 
             if (urlStack.empty()) {
@@ -18,7 +19,7 @@
                 const epis = populatedEpisodes(SEASONS, EPISODES)
                 epis
                     .shuffle()
-                    .forEach(_ => urlStack.softPush(baseURL + _[0] + "/" + _[1] + "?play=true"))
+                    .forEach(_ => urlStack.softPush(`${baseURL}?season=${_[0]}&episode=${_[1]}`))
                 urlStack.save()
             }
 
