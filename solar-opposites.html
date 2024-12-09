@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh">
+    <title>Redirecting...</title>
+    <script src="utils.js"></script>
+    <script>
+        window.onload = function () {
+            const baseURL = "https://corsflix.us.kg/tv-shows/97645";
+            const urlStack = new URLStack()
+
+            if (urlStack.empty()) {
+                const SEASONS = 5
+                const EPISODES = 11
+
+                const epis = populatedEpisodes(SEASONS, EPISODES)
+                epis
+                    .shuffle()
+                    .forEach(_ => urlStack.softPush(`${baseURL}?season=${_[0]}&episode=${_[1]}`))
+                urlStack.save()
+            }
+
+            const redirectURL = urlStack.pop()
+            console.log(redirectURL);
+            document.getElementById("msg").innerText = redirectURL;
+            window.location.href = redirectURL;
+        };
+    </script>
+
+</head>
+
+<body>
+    <p id="msg">Redirecting...</p>
+</body>
+
+</html>
