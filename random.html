@@ -26,7 +26,8 @@
                 const htmlFiles = data.tree
                     .filter(item => item.path.endsWith('.html') 
                                     && !excludedFiles.includes(item.path))
-                    .map(item => `/${item.path.replace('.html', '')}`);
+                    .map(item => `/${item.path.replace('.html', '')}`)
+                    .shuffle();
 
                 if (htmlFiles.length === 0) {
                     alert('No valid HTML files found!');
@@ -34,8 +35,7 @@
                 }
 
                 // Pick a random HTML file
-                const randomNum = Math.floor(Math.random() * htmlFiles.length);
-                window.location.href = htmlFiles[randomNum];
+                window.location.href = htmlFiles[0]
             } catch (error) {
                 alert('Error fetching files:', error);
             }
