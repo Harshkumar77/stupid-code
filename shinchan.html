@@ -21,7 +21,7 @@
                 const epis = populatedEpisodes(SEASONS, EPISODES)
                 epis
                     .shuffle()
-                    .forEach(_ => urlStack.softPush("?episode=" + _[1]))
+                    .forEach(_ => urlStack.softPush("#:~:text=" + _[1]))
                 urlStack.save()
             }
 
