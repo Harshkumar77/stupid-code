@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="Death note">
+    <title>Redirecting...</title>
+    <script src="utils.js"></script>
+    <script>
+        // Common base URL for the episodes
+        // season s15 https://www.optoonsindia.com/2021/04/shin-chan-season-15-hindi-episodes.html
+        const baseURL = "https://server.optoonsindia.com/2021/04/import-urlhttpsfonts_852.html";
+
+        window.onload = function () {
+            const urlStack = new URLStack()
+
+            if (urlStack.empty()) {
+                const SEASONS = 1
+                const EPISODES = 52
+
+                const epis = populatedEpisodes(SEASONS, EPISODES)
+                epis
+                    .shuffle()
+                    .forEach(_ => urlStack.softPush("?episode=" + _[1]))
+                urlStack.save()
+            }
+
+            const redirectURL = baseURL + urlStack.pop()
+            console.log(redirectURL);
+            document.getElementById("msg").innerText = redirectURL;
+            window.location.href = redirectURL;
+        };
+
+    </script>
+</head>
+
+<body>
+    <p id="msg">Redirecting...</p>
+</body>
+
+</html>
