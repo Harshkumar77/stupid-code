@@ -28,12 +28,12 @@
                 epis.push([3, 13])
                 epis
                     .shuffle()
-                    .forEach(_ => urlStack.softPush(baseURL + urls[_[0] - 1] + _[1]))
+                    .forEach(_ => urlStack.softPush([urls[_[0] - 1], _[1]]))
                 urlStack.save()
             }
 
-            const redirectURL = urlStack.pop()
-            console.log(redirectURL);
+            const poped = urlStack.pop()
+            const redirectURL = (baseURL + poped[0] + poped[1]);
             document.getElementById("msg").innerText = redirectURL;
             window.location.href = redirectURL;
         };
