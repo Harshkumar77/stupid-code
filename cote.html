@@ -10,6 +10,7 @@
         const baseURL = "https://anitaku.pe/";
 
         const urls = [
+            "",
             "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-dub-episode-",
             "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-2nd-season-dub-episode-",
             "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-3rd-season-dub-episode-",
@@ -28,12 +29,12 @@
                 epis.push([3, 13])
                 epis
                     .shuffle()
-                    .forEach(_ => urlStack.softPush([urls[_[0] - 1], _[1]]))
+                    .forEach(_ => urlStack.softPush([_[0], _[1]]))
                 urlStack.save()
             }
 
             const poped = urlStack.pop()
-            const redirectURL = (baseURL + poped[0] + poped[1]);
+            const redirectURL = (baseURL + urls[poped[0]] + poped[1]);
             document.getElementById("msg").innerText = redirectURL;
             window.location.href = redirectURL;
         };
