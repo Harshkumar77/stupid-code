@@ -7,13 +7,13 @@
     <title>Redirecting...</title>
     <script src="utils.js"></script>
     <script>
-        const baseURL = "https://anitaku.pe/";
+        const baseURL = "https://gogoanime.cloud/watch/";
 
-        const urls = [
-            "",
-            "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-dub-episode-",
-            "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv-2nd-season-dub-episode-",
-            "youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-3rd-season-dub-episode-",
+        const season_urls = [
+            "SEASON ZERO INVALID",
+            "classroom-of-the-elite-jt?ep=jt_",
+            "classroom-of-the-elite-2nd-season-dy4?ep=dy4_",
+            "classroom-of-the-elite-iii-ekg?ep=ekg_",
         ];
 
 
@@ -33,8 +33,8 @@
                 urlStack.save()
             }
 
-            const poped = urlStack.pop()
-            const redirectURL = (baseURL + urls[poped[0]] + poped[1]);
+            const [season, episode] = urlStack.pop()
+            const redirectURL = (baseURL + season_urls[season] + episode);
             document.getElementById("msg").innerText = redirectURL;
             window.location.href = redirectURL;
         };
