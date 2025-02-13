@@ -7,12 +7,13 @@
     <title>Redirecting...</title>
     <script src="utils.js"></script>
     <script>
-        const baseURL = "https://anitaku.pe/";
+        const baseURL = "https://animekai.to/watch/";
 
-        const urls = [
-        "kage-no-jitsuryokusha-ni-naritakute-dub-episode-",
-        "kage-no-jitsuryokusha-ni-naritakute-2nd-season-dub-episode-",
-         ];
+        const season_urls = [
+            "SEASON ZERO INVALID",
+            "the-eminence-in-shadow-d487#ep=",
+            "the-eminence-in-shadow-season-2-jvrv#ep=",
+        ];
 
 
         window.onload = function () {
@@ -33,14 +34,13 @@
 
                 epis
                     .shuffle()
-                    .forEach(_ => urlStack.softPush(baseURL + urls[_[0] - 1] + _[1]))
+                    .forEach(_ => urlStack.softPush([_[0], _[1]]))
                 urlStack.save()
             }
 
-            const redirectURL = urlStack.pop()
-            console.log(redirectURL);
-            document.getElementById("msg").innerText = redirectURL;
-            window.location.href = redirectURL;
+            const [season, episode] = urlStack.pop()
+            const redirectURL = (baseURL + season_urls[season] + episode);
+            redirect(redirectURL, season, episode)
         };
 
     </script>

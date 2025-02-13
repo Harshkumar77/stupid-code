@@ -75,4 +75,9 @@ Array.prototype.shuffle = function () {
   return this.sort(() => 0.5 - Math.random());
 };
 
+function redirect(url, season, episode) {
+  document.getElementById("msg").innerText = url;
+  window.location.href = url;
+}
+
 const websiteA = ""

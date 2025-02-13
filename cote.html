@@ -35,8 +35,8 @@
 
             const [season, episode] = urlStack.pop()
             const redirectURL = (baseURL + season_urls[season] + episode);
-            document.getElementById("msg").innerText = redirectURL;
-            window.location.href = redirectURL;
+            redirect(redirectURL, season, episode)
+
         };
 
     </script>
