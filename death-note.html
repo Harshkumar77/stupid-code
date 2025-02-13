@@ -8,7 +8,12 @@
     <script src="utils.js"></script>
     <script>
         // Common base URL for the episodes
-        const baseURL = "https://anitaku.pe/" + "death-note-dub-episode-";
+        const baseURL = "https://animekai.to/watch/";
+
+        const season_urls = [
+            "SEASON ZERO INVALID",
+            "death-note-616q#ep=",
+        ];
 
         window.onload = function () {
             const urlStack = new URLStack()
@@ -20,14 +25,13 @@
                 const epis = populatedEpisodes(SEASONS, EPISODES)
                 epis
                     .shuffle()
-                    .forEach(_ => urlStack.softPush(baseURL + _[1]))
+                    .forEach(_ => urlStack.softPush([_[0], _[1]]))
                 urlStack.save()
             }
 
-            const redirectURL = urlStack.pop()
-            console.log(redirectURL);
-            document.getElementById("msg").innerText = redirectURL;
-            window.location.href = redirectURL;
+            const [season, episode] = urlStack.pop()
+            const redirectURL = (baseURL + season_urls[season] + episode);
+            redirect(redirectURL, season, episode)
         };
 
     </script>
