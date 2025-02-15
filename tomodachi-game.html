@@ -8,27 +8,30 @@
     <script src="utils.js"></script>
     <script>
         // Common base URL for the episodes
-        // season s15 https://www.optoonsindia.com/2021/04/shin-chan-season-15-hindi-episodes.html
-        const baseURL = "https://server.optoonsindia.com/2021/04/import-urlhttpsfonts_852.html";
+        const baseURL = "https://animekai.to/watch/";
+
+        const season_urls = [
+            "SEASON ZERO INVALID",
+            "tomodachi-game-8kve#ep=",
+        ];
 
         window.onload = function () {
             const urlStack = new URLStack()
 
             if (urlStack.empty()) {
                 const SEASONS = 1
-                const EPISODES = 52
+                const EPISODES = 12
 
                 const epis = populatedEpisodes(SEASONS, EPISODES)
                 epis
                     .shuffle()
-                    .forEach(_ => urlStack.softPush("#:~:text=" + _[1]))
+                    .forEach(_ => urlStack.softPush([_[0], _[1]]))
                 urlStack.save()
             }
 
-            const redirectURL = baseURL + urlStack.pop()
-            console.log(redirectURL);
-            document.getElementById("msg").innerText = redirectURL;
-            window.location.href = redirectURL;
+            const [season, episode] = urlStack.pop()
+            const redirectURL = (baseURL + season_urls[season] + episode);
+            redirect(redirectURL, season, episode)
         };
 
     </script>
