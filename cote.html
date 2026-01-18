@@ -7,7 +7,7 @@
     <title>Redirecting...</title>
     <script src="utils.js"></script>
     <script>
-        const baseURL = "https://animekai.to/watch/";
+        const baseURLs = ["https://animekai.to/watch/"];
 
         const season_urls = [
             "SEASON ZERO INVALID",
@@ -34,8 +34,10 @@
             }
 
             const [season, episode] = urlStack.pop()
-            const redirectURL = (baseURL + season_urls[season] + episode);
-            redirect(redirectURL, season, episode)
+            baseURLs.forEach((baseURL) => {
+                const redirectURL = (baseURL + season_urls[season] + episode);
+                redirect(redirectURL, season, episode)
+            })
 
         };
 
