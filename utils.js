@@ -81,7 +81,7 @@ function redirect(url, season, episode) {
 }
 
 function listUrl(url) {
-  document.getElementById("msg").innerHTML += `<a target="_blank" href="${url}">${url}</a>`;
+  document.getElementById("msg").innerHTML += `<br /><a target="_blank" href="${url}">${url}</a>`;
 }
 
 const websiteA = ""
