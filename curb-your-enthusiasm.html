@@ -24,10 +24,8 @@
             }
 
             const [season, episode] = urlStack.pop()
-            const redirectURL = `https://nepu.to/show/curb-your-enthusiasm-2000-2000-237239/season/${season}/episode/${episode}`
-            console.log(redirectURL);
-            document.getElementById("msg").innerText = redirectURL;
-            window.location.href = redirectURL;
+            listUrl(`https://nepu.to/show/curb-your-enthusiasm-2000-2000-237239/season/${season}/episode/${episode}`)
+            listUrl(`https://yflix.to/watch/curb-your-enthusiasm.dyqd4#ep=${season},${episode}`)
         };
     </script>
 
