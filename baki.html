@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh">
+    <title>Redirecting...</title>
+    <script src="utils.js"></script>
+    <script>
+        window.onload = function () {
+            const urlStack = new URLStack()
+
+            if (urlStack.empty()) {
+
+                const epis = []
+
+                // 2018 = 1
+                for (let e = 1; e <= 26; e++) {
+                    epis.push([4,e])
+                } 
+
+
+                for (let e = 1; e <= 13; e++) {
+                    epis.push([5,e])
+                } 
+
+
+                for (let e = 1; e <= 12; e++) {
+                    epis.push([6,e])
+                } 
+
+
+                for (let e = 1; e <= 27; e++) {
+                    epis.push([7,e])
+                } 
+
+                epis
+                    .shuffle()
+                    .forEach(_ => urlStack.softPush([_[0], _[1]]))
+                
+                urlStack.save()
+            }
+
+            const [season, episode] = urlStack.pop()
+            const animekaiURL = []
+            animekaiURL[4] = "https://anikai.to/watch/baki-1281#ep="
+            animekaiURL[5] = "https://anikai.to/watch/baki-the-great-raitai-tournament-saga-yn9q#ep=1"
+            animekaiURL[6] = "https://anikai.to/watch/baki-hanma-nwjk#ep="
+            animekaiURL[7] = "https://anikai.to/watch/baki-hanma-2nd-season-j0e1#ep="
+            listUrl(`${animekaiURL[season]}${episode}`)
+        };
+    </script>
+
+</head>
+
+<body>
+    <p id="msg">Redirecting...</p>
+</body>
+
+</html>
