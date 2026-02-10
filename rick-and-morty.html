@@ -23,10 +23,7 @@
             }
 
             const [season, episode] = urlStack.pop()
-            const redirectURL = `https://nepu.to/show/rick-and-morty-2013-2013-232890/season/${season}/episode/${episode}`
-            console.log(redirectURL);
-            document.getElementById("msg").innerText = redirectURL;
-            window.location.href = redirectURL;
+            listUrl(`https://sflix.fi/watch/rick-and-morty.y4ozd#ep=${season},${episode}`)
         };
     </script>
 
