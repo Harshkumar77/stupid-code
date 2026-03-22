@@ -36,7 +36,7 @@
             const [season, episode] = urlStack.pop()
             baseURLs.forEach((baseURL) => {
                 const redirectURL = (baseURL + season_urls[season] + episode);
-                redirect(redirectURL, season, episode)
+                listUrl(redirectURL)
             })
 
         };
