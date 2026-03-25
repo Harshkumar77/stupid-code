@@ -7,14 +7,22 @@
     <title>Redirecting...</title>
     <script src="utils.js"></script>
     <script>
-        const baseURLs = ["https://anikai.to/watch/"];
+        const anikaiUrls = ["https://anikai.to/watch/"];
 
-        const season_urls = [
+        const anikai_season_urls = [
             "SEASON ZERO INVALID",
             "classroom-of-the-elite-9ke6#ep=",
             "classroom-of-the-elite-season-2-78x2#ep=",
             "classroom-of-the-elite-season-3-65vq#ep=",
         ];
+
+        const mirouUrls = ["https://www.miruro.tv/"]
+        const mirou_season_urls = [
+          "SEASON ZERO INVALID",
+          "watch/98659/classroom-of-the-elite?ep="
+          ,"watch/145545/classroom-of-the-elite-season-2?ep="
+          ,"watch/146066/classroom-of-the-elite-season-3?ep="
+        ]
 
 
         window.onload = function () {
@@ -34,10 +42,16 @@
             }
 
             const [season, episode] = urlStack.pop()
-            baseURLs.forEach((baseURL) => {
-                const redirectURL = (baseURL + season_urls[season] + episode);
-                listUrl(redirectURL)
+            anikaiUrls.forEach((baseURL) => {
+                const redirectURL = (baseURL + anikai_season_urls[season] + episode);
+                listUrl(redirectURL, season, episode)
             })
+
+            mirouUrls.forEach((baseURL) => {
+                const redirectURL = (baseURL + mirou_season_urls[season] + episode);
+                listUrl(redirectURL, season, episode)
+            })
+
 
         };
 
