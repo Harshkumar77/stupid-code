@@ -1,51 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Redirecting...</title>
     <script src="utils.js"></script>
     <script>
-        async function redirectRandomHtml() {
-            try {
-                const apiUrl = 'https://api.github.com/repos/harshkumar77/stupid-code/git/trees/main?recursive=1';
-                const response = await fetch(apiUrl);
-                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-                
-                const data = await response.json();
+      async function redirectRandomHtml() {
+        try {
+          const apiUrl =
+            "https://api.github.com/repos/harshkumar77/stupid-code/git/trees/main?recursive=1";
+          const response = await fetch(apiUrl);
+          if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
-                const excludedFiles = [
-                    'index.html', 
-                    'random.html', 
-                    'example.html', 
-                    'test.html', 
-                    'r.html', 
-                    'shinchan.html',
-                    'list.html',
-                ];
+          const data = await response.json();
 
-                const htmlFiles = data.tree
-                    .filter(item => item.path.endsWith('.html') 
-                                    && !excludedFiles.includes(item.path))
-                    .map(item => `/${item.path.replace('.html', '')}`)
-                    .shuffle();
+          const excludedFiles = [
+            "index.html",
+            "random.html",
+            "example.html",
+            "test.html",
+            "r.html",
+            "shinchan.html",
+            "list.html",
+          ];
 
-                if (htmlFiles.length === 0) {
-                    alert('No valid HTML files found!');
-                    return;
-                }
+          const htmlFiles = data.tree
+            .filter(
+              (item) =>
+                item.path.endsWith(".html") &&
+                !excludedFiles.includes(item.path),
+            )
+            .map((item) => `/${item.path.replace(".html", "")}`)
+            .shuffle();
 
-                // Pick a random HTML file
-                window.location.href = htmlFiles[0]
-            } catch (error) {
-                alert('Error fetching files:', error);
-            }
+          if (htmlFiles.length === 0) {
+            alert("No valid HTML files found!");
+            return;
+          }
+
+          // Pick a random HTML file
+          window.location.href = htmlFiles[0];
+        } catch (error) {
+          alert("Error fetching files:", error);
         }
+      }
 
-        window.onload = redirectRandomHtml;
+      window.onload = redirectRandomHtml;
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <p>Redirecting...</p>
-</body>
+  </body>
 </html>
+

@@ -1,66 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" />
     <title>Redirecting...</title>
     <script src="utils.js"></script>
     <script>
-        const anikaiUrls = ["https://anikai.to/watch/", "https://animekai.to/watch/", "https://animekai.fi/watch/"];
+      const anikaiUrls = [
+        "https://anikai.to/watch/",
+        "https://animekai.to/watch/",
+        "https://animekai.fi/watch/",
+      ];
 
-        const anikai_season_urls = [
-            "SEASON ZERO INVALID",
-            "classroom-of-the-elite-9ke6#ep=",
-            "classroom-of-the-elite-season-2-78x2#ep=",
-            "classroom-of-the-elite-season-3-65vq#ep=",
-        ];
+      const anikai_season_urls = [
+        "SEASON ZERO INVALID",
+        "classroom-of-the-elite-9ke6#ep=",
+        "classroom-of-the-elite-season-2-78x2#ep=",
+        "classroom-of-the-elite-season-3-65vq#ep=",
+      ];
 
-        const mirouUrls = ["https://www.miruro.tv/", "https://www.miruro.to/", "https://www.miruro.online/"]
-        const mirou_season_urls = [
-          "SEASON ZERO INVALID",
-          "watch/98659/classroom-of-the-elite?ep="
-          ,"watch/145545/classroom-of-the-elite-season-2?ep="
-          ,"watch/146066/classroom-of-the-elite-season-3?ep="
-        ]
+      const mirouUrls = [
+        "https://www.miruro.tv/",
+        "https://www.miruro.to/",
+        "https://www.miruro.online/",
+      ];
+      const mirou_season_urls = [
+        "SEASON ZERO INVALID",
+        "watch/98659/classroom-of-the-elite?ep=",
+        "watch/145545/classroom-of-the-elite-season-2?ep=",
+        "watch/146066/classroom-of-the-elite-season-3?ep=",
+      ];
 
+      window.onload = function () {
+        const urlStack = new URLStack();
 
-        window.onload = function () {
-            const urlStack = new URLStack()
+        if (urlStack.empty()) {
+          const SEASONS = 3;
+          const EPISODES = 12;
 
-            if (urlStack.empty()) {
-                const SEASONS = 3
-                const EPISODES = 12
+          const epis = populatedEpisodes(SEASONS, EPISODES);
+          epis.push([2, 13]);
+          epis.push([3, 13]);
+          epis.shuffle().forEach((_) => urlStack.softPush([_[0], _[1]]));
+          urlStack.save();
+        }
 
-                const epis = populatedEpisodes(SEASONS, EPISODES)
-                epis.push([2, 13])
-                epis.push([3, 13])
-                epis
-                    .shuffle()
-                    .forEach(_ => urlStack.softPush([_[0], _[1]]))
-                urlStack.save()
-            }
+        const [season, episode] = urlStack.pop();
+        anikaiUrls.forEach((baseURL) => {
+          const redirectURL = baseURL + anikai_season_urls[season] + episode;
+          listUrl(redirectURL, season, episode);
+        });
 
-            const [season, episode] = urlStack.pop()
-            anikaiUrls.forEach((baseURL) => {
-                const redirectURL = (baseURL + anikai_season_urls[season] + episode);
-                listUrl(redirectURL, season, episode)
-            })
-
-            mirouUrls.forEach((baseURL) => {
-                const redirectURL = (baseURL + mirou_season_urls[season] + episode);
-                listUrl(redirectURL, season, episode)
-            })
-
-          
-
-        };
-
+        mirouUrls.forEach((baseURL) => {
+          const redirectURL = baseURL + mirou_season_urls[season] + episode;
+          listUrl(redirectURL, season, episode);
+        });
+      };
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <p id="msg">Redirecting...</p>
-</body>
-
+  </body>
 </html>

@@ -1,36 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" />
     <title>Redirecting...</title>
     <script src="utils.js"></script>
     <script>
-        window.onload = function () {
-            const urlStack = new URLStack()
+      window.onload = function () {
+        const urlStack = new URLStack();
 
-            if (urlStack.empty()) {
-                const SEASONS = 8
-                const EPISODES = 10
+        if (urlStack.empty()) {
+          const SEASONS = 8;
+          const EPISODES = 10;
 
-                const epis = populatedEpisodes(SEASONS, EPISODES)
-                epis.push(["1", "11"])
-                epis
-                    .shuffle()
-                    .forEach(_ => urlStack.softPush(_))
-                urlStack.save()
-            }
+          const epis = populatedEpisodes(SEASONS, EPISODES);
+          epis.push(["1", "11"]);
+          epis.shuffle().forEach((_) => urlStack.softPush(_));
+          urlStack.save();
+        }
 
-            const [season, episode] = urlStack.pop()
-            listUrl(`https://sflix.fi/watch/rick-and-morty.y4ozd#ep=${season},${episode}`)
-        };
+        const [season, episode] = urlStack.pop();
+        listUrl(
+          `https://sflix.fi/watch/rick-and-morty.y4ozd#ep=${season},${episode}`,
+        );
+      };
     </script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <p id="msg">Redirecting...</p>
-</body>
-
+  </body>
 </html>
+

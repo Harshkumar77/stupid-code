@@ -1,53 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" />
     <title>Redirecting...</title>
     <script src="utils.js"></script>
     <script>
-        const baseURL = "https://animekai.to/watch/";
+      const baseURL = "https://animekai.to/watch/";
 
-        const season_urls = [
-            "SEASON ZERO INVALID",
-            "the-eminence-in-shadow-d487#ep=",
-            "the-eminence-in-shadow-season-2-jvrv#ep=",
-        ];
+      const season_urls = [
+        "SEASON ZERO INVALID",
+        "the-eminence-in-shadow-d487#ep=",
+        "the-eminence-in-shadow-season-2-jvrv#ep=",
+      ];
 
+      window.onload = function () {
+        const urlStack = new URLStack();
 
-        window.onload = function () {
-            const urlStack = new URLStack()
+        if (urlStack.empty()) {
+          const SEASONS = 2;
+          const EPISODES = 12;
 
-            if (urlStack.empty()) {
-                const SEASONS = 2
-                const EPISODES = 12
+          const epis = populatedEpisodes(SEASONS, EPISODES);
+          epis.push([1, 13]);
+          epis.push([1, 14]);
+          epis.push([1, 15]);
+          epis.push([1, 17]);
+          epis.push([1, 18]);
+          epis.push([1, 19]);
+          epis.push([1, 20]);
 
-                const epis = populatedEpisodes(SEASONS, EPISODES)
-                epis.push([1, 13])
-                epis.push([1, 14])
-                epis.push([1, 15])
-                epis.push([1, 17])
-                epis.push([1, 18])
-                epis.push([1, 19])
-                epis.push([1, 20])
+          epis.shuffle().forEach((_) => urlStack.softPush([_[0], _[1]]));
+          urlStack.save();
+        }
 
-                epis
-                    .shuffle()
-                    .forEach(_ => urlStack.softPush([_[0], _[1]]))
-                urlStack.save()
-            }
-
-            const [season, episode] = urlStack.pop()
-            const redirectURL = (baseURL + season_urls[season] + episode);
-            redirect(redirectURL, season, episode)
-        };
-
+        const [season, episode] = urlStack.pop();
+        const redirectURL = baseURL + season_urls[season] + episode;
+        redirect(redirectURL, season, episode);
+      };
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <p id="msg">Redirecting...</p>
-</body>
-
+  </body>
 </html>
+

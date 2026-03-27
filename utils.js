@@ -71,7 +71,7 @@ function populatedEpisodes(SEASONS, EPISODES) {
     .flat();
 }
 
-Array.prototype.shuffle = function () {
+Array.prototype.shuffle = function() {
   return this.sort(() => 0.5 - Math.random());
 };
 
